@@ -16,14 +16,18 @@ For each type 3 query, print the maximum element in the stack on a new line.
 
 """
 
-N = int(raw_input())
 stack = []
+max_element = 0
 
-for i in range(N):
-    query = raw_input().split(' ')
+for i in range(int(raw_input())):
+    query = raw_input().split()
     if query[0] == '1':
-        stack.append(int(query[1]))
+        value = int(query[1])
+        stack.append(value)
+        max_element = max(max_element, value)
     elif query[0] == '2':
-        del stack[-1]
+        del_element = stack.pop()
+        if del_element == max_element:
+            max_element = max(stack + [0])
     else:
-        print max(stack)
+        print max_element
